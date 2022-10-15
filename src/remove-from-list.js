@@ -39,15 +39,3 @@ function removeKFromList(l, k) {
 module.exports = {
   removeKFromList
 };
-
-let first = {
-  a: 1,
-  b: 2
-}
-
-let second = first;
-
-second.a = 88;
-
-console.log(first);
-console.log(second);
