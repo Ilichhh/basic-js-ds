@@ -53,9 +53,31 @@ class BinarySearchTree {
   }
 
 
-  remove(/* data */) {
-    // throw new NotImplementedError('Not implemented');
+  remove(data) {
+    function removeData(node, data) {
+      if (!node) return null;
 
+      if (data !== node.data) {
+        data < node.data ? node.left = removeData(node.left, data) : node.right = removeData(node.right, data);
+        return node;
+      } else {
+        if (!node.left && !node.right) return null;
+        if (node.left && node.right) {
+          function findMin(node) {
+            return node.left ? findMin(node.left) : node;
+          }
+      
+          node.data = findMin(node.right).data;
+          node.right = removeData(node.right, node.data);
+          return node;
+        }
+        
+        node.left ? node = node.left : node = node.right;
+        return node;
+      }
+    }
+
+    this.rootNode = removeData(this.rootNode, data);
   }
 
 
